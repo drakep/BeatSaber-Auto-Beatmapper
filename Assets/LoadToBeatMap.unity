@@ -137,17 +137,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 96186858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 123756762}
-  m_Father: {fileID: 1314365061}
+  m_Father: {fileID: 1726066488}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 0}
+  m_AnchoredPosition: {x: 180, y: 0}
   m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96186860
@@ -704,12 +704,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Unity already has features to open audio files from disk* and the internet,
-    but with a setup like this you could make a visualisation music player!
-
-
-    (*The OpenFilePanel used here only works in the Editor, but file browser addons
-    are available.)'
+  m_Text: "Type in the file path including file://, for example, \n\n\"file://C:\\Users\\charl\\Downloads\\song.ogg\"
+    supports mp3, ogg, wav, aiff, mod, it, s3m, xm, but of course BeatSaber only reads
+    .ogg\n\nWhen you hit <b>output</b> there will be a file called <b>output.txt</b>
+    where you ran the file from. Copy/paste the contents of <b>output.txt</b> into
+    one of the custom beatmaps started in Beat Editor."
 --- !u!222 &1008801938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -925,8 +924,6 @@ RectTransform:
   m_Children:
   - {fileID: 1008801936}
   - {fileID: 1726066488}
-  - {fileID: 96186859}
-  - {fileID: 1376098623}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -984,7 +981,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter file path / url...
+  m_Text: file://
 --- !u!222 &1346087660
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1038,12 +1035,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1690302768}
-  m_Father: {fileID: 1314365061}
+  m_Father: {fileID: 1726066488}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -38.92}
+  m_AnchoredPosition: {x: 180, y: -38.92}
   m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376098624
@@ -1298,12 +1295,14 @@ RectTransform:
   m_Children:
   - {fileID: 1346087661}
   - {fileID: 148514638}
+  - {fileID: 96186859}
+  - {fileID: 1376098623}
   m_Father: {fileID: 1314365061}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 0}
+  m_AnchoredPosition: {x: -30, y: -40.08}
   m_SizeDelta: {x: 300, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1726066489

@@ -5,14 +5,15 @@ using static NoteConstructor;
 public class outputJsonString : MonoBehaviour {
     List<GameObject> firstLevelChildren = new List<GameObject>();
     public int songLength = 205;
-    public int beatpm = 134;
+    public float beatpm = 134;
     public int TargetBeatsPerStep = 16;
     public int DominanteHand = 0; // 0 right 1 left;
     int totalBeats, globalNoteCount = 0;
     float step;
-	// Use this for initialization
-	void Start () {
-        totalBeats = (songLength / 60) * beatpm;
+    float timer;
+    // Use this for initialization
+    void Start () {
+        totalBeats = (songLength / 60) * (int)beatpm;
         step = 60 / beatpm;
         var children = this.GetComponentsInChildren<Transform>();
         foreach (var c in children)
@@ -26,7 +27,6 @@ public class outputJsonString : MonoBehaviour {
         timer = step;
     }
     float[] avg10 = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    float timer;
 	// Update is called once per frame
 	void Update () {
         int count = 0;

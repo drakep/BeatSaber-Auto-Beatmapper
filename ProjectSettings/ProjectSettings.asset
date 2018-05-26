@@ -625,7 +625,7 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 7c735350-2ba3-436a-8e9a-9479ee2d73b0
   projectName: AudioVizOP
   organizationId: charles-poole
