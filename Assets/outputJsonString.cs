@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static NoteConstructor;
 
@@ -167,7 +168,11 @@ public class outputJsonString : MonoBehaviour {
     Debug.Log(theWhole);
         System.IO.File.WriteAllText("output.txt", theWhole);
     }
-    
+    public void reloadScene()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }    
 }
 
 
