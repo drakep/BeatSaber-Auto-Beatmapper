@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static NoteConstructor;
 
 public class outputJsonString : MonoBehaviour {
     List<GameObject> firstLevelChildren = new List<GameObject>();
+    public InputField songLengthField, bpm, tBpm, domHand, avgThresh1, rChance, bChance, tbNotes;
     public int songLength = 205;
     public float beatpm = 134;
     public int TargetBeatsPerStep = 16;
@@ -12,6 +15,41 @@ public class outputJsonString : MonoBehaviour {
     float step;
     float timer;
     // Use this for initialization
+    private void OnEnable()
+    {
+        if (songLengthField.text != "205")
+        {
+            songLength = Convert.ToInt32(songLengthField.text);
+        }
+        if (bpm.text != "125")
+        {
+            beatpm = Convert.ToInt32(bpm.text);
+        }
+        if (tBpm.text != "16")
+        {
+            TargetBeatsPerStep = Convert.ToInt32(tBpm.text);
+        }
+        if (domHand.text != "1")
+        {
+            DominanteHand = Convert.ToInt32(domHand.text);
+        }
+        if (avgThresh1.text != "1.2")
+        {
+            avgthresh = Convert.ToSingle(avgThresh1.text);
+        }
+        if (rChance.text != "1.2")
+        {
+            RedChance = Convert.ToInt32(rChance.text);
+        }
+        if (bChance.text != "1.2")
+        {
+            BlueChance = Convert.ToInt32(bChance.text);
+        }
+        if (tbNotes.text != "1.2")
+        {
+            timeBetweenNotes = Convert.ToSingle(tbNotes.text);
+        }
+    }
     void Start () {
         totalBeats = (songLength / 60) * (int)beatpm;
         step = 60 / beatpm;
@@ -54,8 +92,13 @@ public class outputJsonString : MonoBehaviour {
     public float avgthresh = 1f;
     public int RedChance, BlueChance;
     public float timeBetweenNotes;
+    public List<Image> dispGrid = new List<Image>();
     private void analyze(float[] avg101)
     {
+        foreach (Image img in dispGrid)
+        {
+            img.color = new Color(1, 1, 1);
+        }
         bool oneNote = false;
         bool twoNote = false;
         float avgCalc = 0;
@@ -66,6 +109,10 @@ public class outputJsonString : MonoBehaviour {
         int count = 0;
         foreach (float inti in avg101)
         {
+            if (inti > avgCalc * avgthresh)
+            {
+                dispGrid[count].color = new Color(0, 1, 0);
+            }
             if (inti > avgCalc * avgthresh && oneNote && !twoNote)
             {
                 twoNote = true;
