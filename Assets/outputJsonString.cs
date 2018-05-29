@@ -66,8 +66,9 @@ public class outputJsonString : MonoBehaviour {
         timer = step;
     }
     float[] avg10 = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	// Update is called once per frame
-	void Update () {
+    float[] avg15 = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    // Update is called once per frame
+    void Update () {
         int count = 0;
         int count2 = 0;
 		foreach(GameObject gObj in firstLevelChildren)
@@ -80,20 +81,59 @@ public class outputJsonString : MonoBehaviour {
                 count++;
             }
         }
-        
+
+        count = 0;
+        count2 = 0;
+        foreach (GameObject gObj in firstLevelChildren)
+        {
+            avg15[count] = avg15[count] + gObj.transform.localScale.y;
+            //Debug.Log(count + " " + count2);
+            count2++;
+            if (count2 % 10 == 0)
+            {
+                count++;
+            }
+        }
         timer -= Time.deltaTime;
         if (timer < 0)
         {
+            analyze15(avg15);
             analyze(avg10);
             avg10 = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            avg15 = new float[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             timer = step;
         }
         
     }
+
+    private void analyze15(float[] avg101)
+    {
+        foreach (Image img in dispGrid2)
+        {
+            img.color = new Color(1, 1, 1);
+        }
+        float avgCalc = 0;
+        foreach (float inti in avg101)
+        {
+            avgCalc += inti;
+        }
+        avgCalc = avgCalc / 15;
+        int count = 0;
+        foreach (float inti in avg101)
+        {
+            if (inti > avgCalc * avgthresh)
+            {
+                dispGrid2[count].color = new Color(0, 1, 0);
+            }
+            count++;
+        }
+    }
+
     public float avgthresh = 1f;
     public int RedChance, BlueChance;
     public float timeBetweenNotes;
     public List<Image> dispGrid = new List<Image>();
+    public List<Image> dispGrid2 = new List<Image>();
     private void analyze(float[] avg101)
     {
         foreach (Image img in dispGrid)
@@ -156,15 +196,15 @@ public class outputJsonString : MonoBehaviour {
     List<int> Left = new List<int> {0,2,1,2,0,1,1,1,0,0,1,0};
     List<int> right = new List<int> {2,2,3,2,2,1,3,1,2,0,3,0};
     List<note> notes = new List<note>();
-
+    public string obstacles = "";
     public void output()
     {
-        string theWhole = "{\"_version\":\"1.5.0\",\"_beatsPerMinute\":134,\"_beatsPerBar\":16,\"_noteJumpSpeed\":10,\"_shuffle\":0,\"_shufflePeriod\":0.5,\"_events\":[],\"_notes\":[";
+        string theWhole = "{\"_version\":\"1.5.0\",\"_beatsPerMinute\":" + beatpm + ",\"_beatsPerBar\":16,\"_noteJumpSpeed\":10,\"_shuffle\":0,\"_shufflePeriod\":0.5,\"_events\":[],\"_notes\":[";
         foreach(note not in notes)
         {
             theWhole += "{ \"_time\":"+ not.step + ",\"_lineIndex\":"+ not.column +",\"_lineLayer\":" + not.row + ",\"_type\":"+ not.type + ",\"_cutDirection\":" + not.cutDirection + "},";
         }
-        theWhole += "]}";
+        theWhole += "],\"_obstacles\":[" + obstacles + "]}";
     Debug.Log(theWhole);
         System.IO.File.WriteAllText("output.txt", theWhole);
     }

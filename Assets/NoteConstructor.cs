@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NoteConstructor : MonoBehaviour {
+
     public class note
     {
         public int step;
@@ -11,6 +12,7 @@ public class NoteConstructor : MonoBehaviour {
         public int row;
         public int column;
     }
+
     public class notePrefab
     {
         public List<int> steps;
