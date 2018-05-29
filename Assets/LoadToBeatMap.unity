@@ -2341,13 +2341,13 @@ MonoBehaviour:
   bChance: {fileID: 1456335659}
   tbNotes: {fileID: 1257297854}
   songLength: 205
-  beatpm: 134
+  beatpm: 125
   TargetBeatsPerStep: 16
   DominanteHand: 0
   avgthresh: 1.2
   RedChance: 33
   BlueChance: 33
-  timeBetweenNotes: 0.54
+  timeBetweenNotes: 0.5
   dispGrid:
   - {fileID: 1952346006}
   - {fileID: 20074996}
@@ -2375,6 +2375,7 @@ MonoBehaviour:
   - {fileID: 146280033}
   - {fileID: 707239010}
   - {fileID: 1523030966}
+  obstacles: 
 --- !u!1 &625884207
 GameObject:
   m_ObjectHideFlags: 0

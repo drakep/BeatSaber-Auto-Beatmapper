@@ -38,15 +38,15 @@ public class outputJsonString : MonoBehaviour {
         {
             avgthresh = Convert.ToSingle(avgThresh1.text);
         }
-        if (rChance.text != "1.2")
+        if (rChance.text != "33")
         {
             RedChance = Convert.ToInt32(rChance.text);
         }
-        if (bChance.text != "1.2")
+        if (bChance.text != "33")
         {
             BlueChance = Convert.ToInt32(bChance.text);
         }
-        if (tbNotes.text != "1.2")
+        if (tbNotes.text != ".5")
         {
             timeBetweenNotes = Convert.ToSingle(tbNotes.text);
         }
